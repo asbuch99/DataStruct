@@ -1,3 +1,9 @@
+/*
+Anvay Buch
+Simple_Dodgeball Program 1
+This program runs a simulation of the simple dodgeball game using only arrays.
+*/
+
 import java.util.Scanner;
 
 public class Dodgeball
