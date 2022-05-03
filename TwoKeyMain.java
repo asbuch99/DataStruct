@@ -24,7 +24,8 @@ public class TwoKeyMain {
         db.modify2(1, 17);
         db.change1("Bob", 5);
         db.change2(3, "Pebbles");
-        db.delete1("Wilma");
+        // db.delete2(13);
+        db.delete1("Joe");
         System.out.println(db.list1());
         System.out.println(db.list2());
     }
