@@ -1,6 +1,7 @@
 /*
 Anvay Buch
 Grocery Store Simulation
+Simulates customers going through a grocery store with different number of cashiers
 Did a tutoring session with Eric Grandizio for help understanding how to start off
 */
 
@@ -113,7 +114,7 @@ public class P5 {
     public static void main(String[] args) {
 
         Customer[] cust = genCustomers(1000);
-        Cashier[] cashier = genCashiers(6);
+        Cashier[] cashier = genCashiers(12);
         int time = 0;
         double totaltasktime = 0;
         double avgwait = 0;
