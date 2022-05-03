@@ -17,119 +17,119 @@ public class TwoKey<K1 extends Comparable<K1>, K2 extends Comparable<K2>, D> {
     Tree<K1, TwoKey<K1, K2, D>> t1 = new Tree<>();
     Tree<K2, TwoKey<K1, K2, D>> t2 = new Tree<>();
 
-    // "inserts a record to the database"
+    // "inserts a rec to the database"
     void insert(K1 key1, K2 key2, D data) {
 
-        TwoKey<K1, K2, D> record = new TwoKey<K1, K2, D>(key1, key2, data);
+        TwoKey<K1, K2, D> rec = new TwoKey<K1, K2, D>(key1, key2, data);
 
-        // add the record of key1 into t1
-        t1.add(key1, record);
-        // add the record of key2 into t2
-        t2.add(key2, record);
+        // add the rec of key1 into t1
+        t1.add(key1, rec);
+        // add the rec of key2 into t2
+        t2.add(key2, rec);
     }
 
     // "finds and returns the data associated with key1"
     D search1(K1 key1) {
 
         // call find method from Tree class for:
-        // create record constructor for t1 object and key1 parameter from TwoKey
-        TwoKey<K1, K2, D> record = t1.find(key1);
-        if (record == null) // if the record is empty
+        // create rec constructor for t1 object and key1 parameter from TwoKey
+        TwoKey<K1, K2, D> rec = t1.find(key1);
+        if (rec == null) // if the rec is empty
             return null; // null return
         else
-            return record.data; // if not, return the record of the data
+            return rec.data; // if not, return the rec of the data
     }
 
     // "finds and returns the data associated with key2"
     D search2(K2 key2) {
 
         // call find method from Tree class for:
-        // create record constructor for t2 object and key2 parameter from TwoKey
-        TwoKey<K1, K2, D> record = t2.find(key2);
-        if (record == null) // if the record is empty
+        // create rec constructor for t2 object and key2 parameter from TwoKey
+        TwoKey<K1, K2, D> rec = t2.find(key2);
+        if (rec == null) // if the rec is empty
             return null; // null return
         else
-            return record.data; // if not, return the record of the data
+            return rec.data; // if not, return the rec of the data
     }
 
-    // "modifies the record associated with key 1 to contain the new data"
+    // "modifies the rec associated with key 1 to contain the new data"
     void modify1(K1 key1, D data) {
 
         // find key of first tree
-        // create record constructor for t1 object and key1 parameter from TwoKey
-        TwoKey<K1, K2, D> record = t1.find(key1);
+        // create rec constructor for t1 object and key1 parameter from TwoKey
+        TwoKey<K1, K2, D> rec = t1.find(key1);
 
-        // create newRecord to replace record.key2
-        TwoKey<K1, K2, D> newRecord = new TwoKey<K1, K2, D>(key1, record.key2, data);
-        // call modify on key 1 and the new record
-        t1.modify(key1, newRecord);
-        // then call modify for the new record of key2
-        t2.modify(newRecord.key2, newRecord);
+        // create TempR to replace rec.key2
+        TwoKey<K1, K2, D> TempR = new TwoKey<K1, K2, D>(key1, rec.key2, data);
+        // call modify on key 1 and the new rec
+        t1.modify(key1, TempR);
+        // then call modify for the new rec of key2
+        t2.modify(TempR.key2, TempR);
 
     }
 
-    // "modifies the record associated with key2 to contain the new data"
+    // "modifies the rec associated with key2 to contain the new data"
     void modify2(K2 key2, D data) {
 
         // find key of second tree
-        // create record constructor for t2 object and key2 parameter from TwoKey
-        TwoKey<K1, K2, D> record = t2.find(key2);
+        // create rec constructor for t2 object and key2 parameter from TwoKey
+        TwoKey<K1, K2, D> rec = t2.find(key2);
 
-        // create newRecord to replace record of key2
-        TwoKey<K1, K2, D> newRecord = new TwoKey<K1, K2, D>(record.key1, key2, data);
-        // call modify on key2 and the new record
-        t2.modify(key2, newRecord);
-        // then call modify for the new record
-        t1.modify(newRecord.key1, newRecord);
+        // create TempR to replace rec of key2
+        TwoKey<K1, K2, D> TempR = new TwoKey<K1, K2, D>(rec.key1, key2, data);
+        // call modify on key2 and the new rec
+        t2.modify(key2, TempR);
+        // then call modify for the new rec
+        t1.modify(TempR.key1, TempR);
 
     }
 
-    // "deletes the record associated with key1 to contain the new data"
+    // "deletes the rec associated with key1 to contain the new data"
     void delete1(K1 key1) {
-        TwoKey<K1, K2, D> record = t1.find(key1);
+        TwoKey<K1, K2, D> rec = t1.find(key1);
 
         // find key of second tree
-        // create record constructor for t2 object and key2 parameter from TwoKey
-        // TwoKey<K1, K2, D> record = t2.find(key2);
+        // create rec constructor for t2 object and key2 parameter from TwoKey
+        // TwoKey<K1, K2, D> rec = t2.find(key2);
 
-        t1.delete(record.key1);
+        t1.delete(rec.key1);
 
     }
 
-    // "deletes the record associated with key2 to contain the new data"
+    // "deletes the rec associated with key2 to contain the new data"
     void delete2(K2 key2) {
 
         // find key of second tree
-        // create record constructor for t2 object and key2 parameter from TwoKey
-        // TwoKey<K1, K2, D> record = t2.find(key2);
+        // create rec constructor for t2 object and key2 parameter from TwoKey
+        // TwoKey<K1, K2, D> rec = t2.find(key2);
 
         t2.delete(this.key2);
 
     }
 
-    // "changes the second key of the record associated with key1 to be key2"
+    // "changes the second key of the rec associated with key1 to be key2"
     void change1(K1 key1, K2 key2) {
-        TwoKey<K1, K2, D> record = t1.find(key1);
+        TwoKey<K1, K2, D> rec = t1.find(key1);
 
-        // create newRecord constructor to replace record of key2
-        TwoKey<K1, K2, D> newRecord = new TwoKey<K1, K2, D>(key1, key2, record.data);
-        // call modify method from Tree class for key1 and newRecord
-        t1.modify(key1, newRecord);
-        // delete record of key2
-        t2.delete(record.key2);
-        // replace it with the new record
-        t2.add(key2, newRecord);
+        // create TempR constructor to replace rec of key2
+        TwoKey<K1, K2, D> TempR = new TwoKey<K1, K2, D>(key1, key2, rec.data);
+        // call modify method from Tree class for key1 and TempR
+        t1.modify(key1, TempR);
+        // delete rec of key2
+        t2.delete(rec.key2);
+        // replace it with the new rec
+        t2.add(key2, TempR);
 
     }
 
-    // "changes the first key of record associated with key1 to be key2"
+    // "changes the first key of rec associated with key1 to be key2"
     void change2(K2 key2, K1 key1) {
-        TwoKey<K1, K2, D> record = t2.find(key2);
+        TwoKey<K1, K2, D> rec = t2.find(key2);
 
-        TwoKey<K1, K2, D> newRecord = new TwoKey<K1, K2, D>(key1, key2, record.data);
-        t2.modify(key2, newRecord);
-        t1.delete(record.key1);
-        t1.add(key1, newRecord);
+        TwoKey<K1, K2, D> TempR = new TwoKey<K1, K2, D>(key1, key2, rec.data);
+        t2.modify(key2, TempR);
+        t1.delete(rec.key1);
+        t1.add(key1, TempR);
 
     }
 
