@@ -3,6 +3,9 @@ Anvay Buch
 Two-Key Database using Hash implementation
 Creates a database with a Hashmap implementation and gives it operations/functions
 Uses hashmap and is derived from my original TwoKey program
+The benefits of using a hashmap is its performance, which is in O(1) time as opposed to
+a treemap where the performance is typically O(log(n)) time
+A hashmap will not do any sorting, as opposed to a treemap which does sort, therefore the hashmap allows for heterogenous values 
 */
 
 import java.util.HashMap;
