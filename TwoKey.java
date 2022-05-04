@@ -1,3 +1,10 @@
+/*
+Anvay Buch
+Two-Key Database using Tree implementation
+Creates a database with a BST implementation and gives it operations/functions
+Uses Tree.java and help was taken from a tutor on varsity tutors for the beginning of the program as I could not meet with the class tutor/ was home
+*/
+
 import java.util.*;
 
 public class TwoKey<K1 extends Comparable<K1>, K2 extends Comparable<K2>, D> {
@@ -5,43 +12,41 @@ public class TwoKey<K1 extends Comparable<K1>, K2 extends Comparable<K2>, D> {
     public K2 key2;
     public D data;
 
-    public TwoKey() {
-    }
-
-    public TwoKey(K1 key1, K2 key2, D data) {
+    public TwoKey(K1 key1, K2 key2, D data) {// constructor to init keys and data
         this.key1 = key1;
         this.key2 = key2;
         this.data = data;
     }
 
-    Tree<K1, TwoKey<K1, K2, D>> Tree1 = new Tree<>();
-    Tree<K2, TwoKey<K1, K2, D>> Tree2 = new Tree<>();
+    public TwoKey() {// default constructor
+
+    }
+
+    Tree<K1, TwoKey<K1, K2, D>> Tree1 = new Tree<>(); // creating tree for key1
+    Tree<K2, TwoKey<K1, K2, D>> Tree2 = new Tree<>(); // creating tree for key2
 
     // insert a record into the database.
     void insert(K1 key1, K2 key2, D data) {
-
-        TwoKey<K1, K2, D> rec = new TwoKey<K1, K2, D>(key1, key2, data);
-
+        TwoKey<K1, K2, D> rec = new TwoKey<K1, K2, D>(key1, key2, data); // Creating of record (rec references record
+                                                                         // going forward)
         Tree1.add(key1, rec);
         Tree2.add(key2, rec);
     }
 
     // search and return the data associated with key1
     D search1(K1 key1) {
-
         TwoKey<K1, K2, D> rec = Tree1.find(key1);
         if (rec == null)
-            return null;
+            return null; // return null if no record associated
         else
             return rec.data;
     }
 
     // search and return the data associated with key2
     D search2(K2 key2) {
-
         TwoKey<K1, K2, D> rec = Tree2.find(key2);
         if (rec == null)
-            return null;
+            return null; // return null if no record associated
         else
             return rec.data;
     }
@@ -56,7 +61,6 @@ public class TwoKey<K1 extends Comparable<K1>, K2 extends Comparable<K2>, D> {
 
     // modify the record associated with key2 to contain the new data
     void modify2(K2 key2, D data) {
-
         TwoKey<K1, K2, D> rec = Tree2.find(key2);
         TwoKey<K1, K2, D> TempR = new TwoKey<K1, K2, D>(rec.key1, key2, data);
         Tree2.modify(key2, TempR);
@@ -68,12 +72,14 @@ public class TwoKey<K1 extends Comparable<K1>, K2 extends Comparable<K2>, D> {
     void delete1(K1 key1) {
         TwoKey<K1, K2, D> rec = Tree1.find(key1);
         Tree1.delete(rec.key1);
+
     }
 
     // delete the record associated with key2
     void delete2(K2 key2) {
         TwoKey<K1, K2, D> rec = Tree2.find(key2);
         Tree2.delete(rec.key2);
+        // Tree1.delete(rec.key2?);
     }
 
     // change the second key of the record associated with key1 to be key2

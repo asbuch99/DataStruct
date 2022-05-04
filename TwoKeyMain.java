@@ -10,7 +10,7 @@
 public class TwoKeyMain {
 
     public static void main(String[] args) {
-        TwoKey<String, Integer, Integer> db = new TwoKey();
+        HashTwoKey<String, Integer, Integer> db = new HashTwoKey();
         db.insert("Sam", 1, 2);
         db.insert("Joe", 2, 3);
         db.insert("Wilma", 3, 5);
@@ -25,7 +25,7 @@ public class TwoKeyMain {
         db.change1("Bob", 5);
         db.change2(3, "Pebbles");
         // db.delete2(13);
-        db.delete1("Joe");
+        // db.delete1("Joe");
         System.out.println(db.list1());
         System.out.println(db.list2());
     }
